@@ -1,0 +1,170 @@
+[
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "joblib",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "joblib",
+        "description": "joblib",
+        "detail": "joblib",
+        "documentation": {}
+    },
+    {
+        "label": "csv",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "csv",
+        "description": "csv",
+        "detail": "csv",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "home",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def home():\n    # Affiche une page HTML avec un formulaire\n    return render_template('index.html')\n@app.route('/predict', methods=['POST'])\ndef predict():\n    text = request.form.get('text')  # Récupérer le texte depuis le formulaire\n    if not text:\n        return render_template('index.html', result=\"Aucun texte fourni.\", sentiment_class=\"text-danger\")\n    # Transformer le texte en vecteur\n    phrase_vector = count_vect.transform([text])",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "predict",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def predict():\n    text = request.form.get('text')  # Récupérer le texte depuis le formulaire\n    if not text:\n        return render_template('index.html', result=\"Aucun texte fourni.\", sentiment_class=\"text-danger\")\n    # Transformer le texte en vecteur\n    phrase_vector = count_vect.transform([text])\n    # Faire la prédiction\n    predicted_label = clf.predict(phrase_vector)[0]\n    # Définir le sentiment\n    if predicted_label == '0':",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "clf",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "clf = joblib.load('sentiment_model.pkl')\ncount_vect = joblib.load('count_vectorizer.pkl')\napp = Flask(__name__)\n@app.route('/')\ndef home():\n    # Affiche une page HTML avec un formulaire\n    return render_template('index.html')\n@app.route('/predict', methods=['POST'])\ndef predict():\n    text = request.form.get('text')  # Récupérer le texte depuis le formulaire",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "count_vect",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "count_vect = joblib.load('count_vectorizer.pkl')\napp = Flask(__name__)\n@app.route('/')\ndef home():\n    # Affiche une page HTML avec un formulaire\n    return render_template('index.html')\n@app.route('/predict', methods=['POST'])\ndef predict():\n    text = request.form.get('text')  # Récupérer le texte depuis le formulaire\n    if not text:",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app = Flask(__name__)\n@app.route('/')\ndef home():\n    # Affiche une page HTML avec un formulaire\n    return render_template('index.html')\n@app.route('/predict', methods=['POST'])\ndef predict():\n    text = request.form.get('text')  # Récupérer le texte depuis le formulaire\n    if not text:\n        return render_template('index.html', result=\"Aucun texte fourni.\", sentiment_class=\"text-danger\")",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "input_file",
+        "kind": 5,
+        "importPath": "script1",
+        "description": "script1",
+        "peekOfCode": "input_file = './data/sentiment-train-mini.csv'\noutput_file = './data/sentiment-train-mini-output.csv'\n# Ouvrir le fichier CSV en lecture\nwith open(input_file, 'r', encoding='utf-8') as infile:\n    reader = csv.reader(infile)\n    rows = []\n    # Parcourir chaque ligne et modifier la première colonne si nécessaire\n    for row in reader:\n        if row[0] == '4':\n            row[0] = '1'  # Remplacer 4 par 1",
+        "detail": "script1",
+        "documentation": {}
+    },
+    {
+        "label": "output_file",
+        "kind": 5,
+        "importPath": "script1",
+        "description": "script1",
+        "peekOfCode": "output_file = './data/sentiment-train-mini-output.csv'\n# Ouvrir le fichier CSV en lecture\nwith open(input_file, 'r', encoding='utf-8') as infile:\n    reader = csv.reader(infile)\n    rows = []\n    # Parcourir chaque ligne et modifier la première colonne si nécessaire\n    for row in reader:\n        if row[0] == '4':\n            row[0] = '1'  # Remplacer 4 par 1\n        rows.append(row)",
+        "detail": "script1",
+        "documentation": {}
+    },
+    {
+        "label": "input_file",
+        "kind": 5,
+        "importPath": "script2",
+        "description": "script2",
+        "peekOfCode": "input_file = \"./data/train.csv\"  # Remplacez par le chemin de votre fichier CSV\noutput_file = \"./data/train-output.csv\"  # Nom du fichier de sortie\n# Lire le fichier CSV\ndf = pd.read_csv(input_file)\n# Supprimer la colonne 'source'\ndf = df.drop(columns=[\"source\"])\n# Remplacer les labels\nlabel_mapping = {\"negative\": 0, \"positive\": 1}\ndf[\"label\"] = df[\"label\"].replace(label_mapping)\n# Sauvegarder le fichier modifié",
+        "detail": "script2",
+        "documentation": {}
+    },
+    {
+        "label": "output_file",
+        "kind": 5,
+        "importPath": "script2",
+        "description": "script2",
+        "peekOfCode": "output_file = \"./data/train-output.csv\"  # Nom du fichier de sortie\n# Lire le fichier CSV\ndf = pd.read_csv(input_file)\n# Supprimer la colonne 'source'\ndf = df.drop(columns=[\"source\"])\n# Remplacer les labels\nlabel_mapping = {\"negative\": 0, \"positive\": 1}\ndf[\"label\"] = df[\"label\"].replace(label_mapping)\n# Sauvegarder le fichier modifié\ndf.to_csv(output_file, index=False)",
+        "detail": "script2",
+        "documentation": {}
+    },
+    {
+        "label": "df",
+        "kind": 5,
+        "importPath": "script2",
+        "description": "script2",
+        "peekOfCode": "df = pd.read_csv(input_file)\n# Supprimer la colonne 'source'\ndf = df.drop(columns=[\"source\"])\n# Remplacer les labels\nlabel_mapping = {\"negative\": 0, \"positive\": 1}\ndf[\"label\"] = df[\"label\"].replace(label_mapping)\n# Sauvegarder le fichier modifié\ndf.to_csv(output_file, index=False)\nprint(f\"Le fichier modifié a été sauvegardé sous le nom {output_file}.\")",
+        "detail": "script2",
+        "documentation": {}
+    },
+    {
+        "label": "df",
+        "kind": 5,
+        "importPath": "script2",
+        "description": "script2",
+        "peekOfCode": "df = df.drop(columns=[\"source\"])\n# Remplacer les labels\nlabel_mapping = {\"negative\": 0, \"positive\": 1}\ndf[\"label\"] = df[\"label\"].replace(label_mapping)\n# Sauvegarder le fichier modifié\ndf.to_csv(output_file, index=False)\nprint(f\"Le fichier modifié a été sauvegardé sous le nom {output_file}.\")",
+        "detail": "script2",
+        "documentation": {}
+    },
+    {
+        "label": "label_mapping",
+        "kind": 5,
+        "importPath": "script2",
+        "description": "script2",
+        "peekOfCode": "label_mapping = {\"negative\": 0, \"positive\": 1}\ndf[\"label\"] = df[\"label\"].replace(label_mapping)\n# Sauvegarder le fichier modifié\ndf.to_csv(output_file, index=False)\nprint(f\"Le fichier modifié a été sauvegardé sous le nom {output_file}.\")",
+        "detail": "script2",
+        "documentation": {}
+    },
+    {
+        "label": "df[\"label\"]",
+        "kind": 5,
+        "importPath": "script2",
+        "description": "script2",
+        "peekOfCode": "df[\"label\"] = df[\"label\"].replace(label_mapping)\n# Sauvegarder le fichier modifié\ndf.to_csv(output_file, index=False)\nprint(f\"Le fichier modifié a été sauvegardé sous le nom {output_file}.\")",
+        "detail": "script2",
+        "documentation": {}
+    }
+]
